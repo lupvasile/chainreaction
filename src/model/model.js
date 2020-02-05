@@ -39,12 +39,14 @@ const initialState = {
 };
 
 const backendState = (client) => {
-    return client.loadLastTransactions().then(lastTransactions =>
+    return !fast ? client.loadLastTransactions().then(lastTransactions =>
         client.loadLastUsage().then(lastUsage =>
             client.loadAggregateState().then(aggregateState =>
                 client.loadRegionUsage().then(regionUsage =>
                     client.loadRegionAggregateState().then(regionAggregateState => {
-                        return !fast ? {
+                        console.log("last transasctions: ");
+                        console.log(lastTransactions);
+                        return {
                             lastTransactions,
                             lastUsage,
                             aggregateState,
@@ -54,11 +56,11 @@ const backendState = (client) => {
                             ],
                             regionUsage,
                             regionAggregateState,
-                        } : initialState
-                    })))));
+                        }
+                    }))))) : new Promise(function(resolve, reject) {resolve(initialState);});
 };
 
-const fast = true;
+const fast = false;
 
 class Model extends EventEmitter {
     constructor() {
@@ -81,6 +83,7 @@ class Model extends EventEmitter {
     loadBackend() {
         return backendState(this.client).then(state => {
             this.state = state;
+            console.log(state);
             this.emit("change", this.state);
         })
     }

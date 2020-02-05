@@ -1,48 +1,49 @@
-const BASE_URL = "http://localhost:8080";
-const STATUS_OK = "200";
+const BASE_URL = "http://192.168.1.91:5000";
+const STATUS_OK = 200;
 
 export default class RestClient {
     loadLastTransactions() {
-        return fetch(this.BASE_URL + "/lastTransactions", {
+        return fetch(BASE_URL + "/lastTransactions", {
             method: "GET",
         }).then(response => {
-            if (response.status !== STATUS_OK) return [];
+            console.log(response.status);
+            if (response.status !== STATUS_OK || !response.ok) return [];
             else return response.json();
         })
     }
 
     loadLastUsage() {
-        return fetch(this.BASE_URL + "/lastUsage", {
+        return fetch(BASE_URL + "/lastUsage", {
             method: "GET",
         }).then(response => {
-            if (response.status !== STATUS_OK) return [];
+            if (response.status !== STATUS_OK || !response.ok) return [];
             else return response.json();
         })
     }
 
     loadAggregateState() {
-        return fetch(this.BASE_URL + "/info", {
+        return fetch(BASE_URL + "/info", {
             method: "GET",
         }).then(response => {
-            if (response.status !== STATUS_OK) return null;
+            if (response.status !== STATUS_OK || !response.ok) return null;
             else return response.json();
         })
     }
 
     loadRegionUsage() {
-        return fetch(this.BASE_URL + "/region/usage", {
+        return fetch(BASE_URL + "/region/usage", {
             method: "GET",
         }).then(response => {
-            if (response.status !== STATUS_OK) return [];
+            if (response.status !== STATUS_OK || !response.ok) return [];
             else return response.json();
         })
     }
 
     loadRegionAggregateState() {
-        return fetch(this.BASE_URL + "/region/info", {
+        return fetch(BASE_URL + "/region/info", {
             method: "GET",
         }).then(response => {
-            if (response.status !== STATUS_OK) return null;
+            if (response.status !== STATUS_OK || !response.ok) return null;
             else return response.json();
         })
     }
