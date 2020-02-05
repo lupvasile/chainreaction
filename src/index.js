@@ -2,5 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import model from './model/model'
 
-ReactDOM.render(<App />, document.getElementById('root'));
+model.loadBackend().then(() =>
+ReactDOM.render(<App/>, document.getElementById('root')));

@@ -11,7 +11,7 @@ import UseStyles from "./Styles";
 
 const Navbar = () => {
     const classes = UseStyles();
-    return(
+    return (
         <div>
             <AppBar position="absolute" className={clsx(classes.appBar, this.props.open && classes.appBarShift)}>
                 <Toolbar className={classes.toolbar}>
@@ -22,14 +22,14 @@ const Navbar = () => {
                         onClick={this.props.onHandleOpen}
                         className={clsx(classes.menuButton, this.props.open && classes.menuButtonHidden)}
                     >
-                        <MenuIcon />
+                        <MenuIcon/>
                     </IconButton>
                     <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
                         {this.props.title}
                     </Typography>
                     <IconButton color="inherit">
                         <Badge badgeContent={4} color="secondary">
-                            <NotificationsIcon />
+                            <NotificationsIcon/>
                         </Badge>
                     </IconButton>
                 </Toolbar>

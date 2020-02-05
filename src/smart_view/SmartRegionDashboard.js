@@ -1,6 +1,5 @@
 import React, {Component} from "react";
 import model from "../model/model";
-import IndividualDashboard from "../view/IndividualDashboard";
 import RegionDashboard from "../view/RegionDashboard";
 
 const mapModelStateToComponentState = (modelState, props) => ({

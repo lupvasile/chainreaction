@@ -1,7 +1,7 @@
 const initialState = {
     visibilityFilter: 22,
     todos: []
-}
+};
 
 function app(state, action) {
     if (typeof state === 'undefined') {

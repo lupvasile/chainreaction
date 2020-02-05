@@ -17,10 +17,6 @@ export default class SmartIndividualDashboard extends Component {
         model.addListener("change", this.listener);
     }
 
-    componentDidMount() {
-        model.loadBackend();
-    }
-
     componentWillUnmount() {
         model.removeListener("change", this.listener);
     }
@@ -29,9 +25,9 @@ export default class SmartIndividualDashboard extends Component {
         return (
             <IndividualDashboard
                 lastTransactions={this.state.lastTransactions}
-                lastUsage = {this.state.lastUsage}
+                lastUsage={this.state.lastUsage}
                 aggregateData={this.state.aggregateData}
-                tips = {this.state.tips}/>
+                tips={this.state.tips}/>
         );
     }
 }
