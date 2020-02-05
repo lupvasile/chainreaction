@@ -79,7 +79,14 @@ const useStyles = makeStyles(theme => ({
         flexDirection: 'column',
     },
     fixedHeight: {
-        height: 240,
+        height: 320,
+    },
+    paperFixed: {
+        padding: theme.spacing(2),
+        display: 'flex',
+        overflow: 'auto',
+        flexDirection: 'column',
+        height: 300
     },
 }));
 

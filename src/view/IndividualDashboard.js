@@ -19,13 +19,16 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import { mainListItems, secondaryListItems } from '../ex-dashboard/listItems';
-import Chart from '../ex-dashboard/Chart';
+import Chart from './indiv_dash/Chart';
 import Deposits from '../ex-dashboard/Deposits';
 import Orders from '../ex-dashboard/Orders';
 import NavBar from "./Navbar";
 
 import SmartNavbar from "../smart_view/SmartNavbar";
 import UseStyles from "./Styles";
+import Summary from "./indiv_dash/Summary";
+import TransactionList from "./indiv_dash/TransactionList";
+import TipsList from "./indiv_dash/TipsList";
 
 function Copyright() {
   return (
@@ -38,88 +41,7 @@ function Copyright() {
   );
 }
 
-const drawerWidth = 240;
-
-const UseStylesHere = makeStyles(theme => ({
-  root: {
-    display: 'flex',
-  },
-  toolbar: {
-    paddingRight: 24, // keep right padding when drawer closed
-  },
-  toolbarIcon: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    padding: '0 8px',
-    ...theme.mixins.toolbar,
-  },
-  appBar: {
-    zIndex: theme.zIndex.drawer + 1,
-    transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-  },
-  appBarShift: {
-    marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  menuButton: {
-    marginRight: 36,
-  },
-  menuButtonHidden: {
-    display: 'none',
-  },
-  title: {
-    flexGrow: 1,
-  },
-  drawerPaper: {
-    position: 'relative',
-    whiteSpace: 'nowrap',
-    width: drawerWidth,
-    transition: theme.transitions.create('width', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  drawerPaperClose: {
-    overflowX: 'hidden',
-    transition: theme.transitions.create('width', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    width: theme.spacing(7),
-    [theme.breakpoints.up('sm')]: {
-      width: theme.spacing(9),
-    },
-  },
-  appBarSpacer: theme.mixins.toolbar,
-  content: {
-    flexGrow: 1,
-    height: '100vh',
-    overflow: 'auto',
-  },
-  container: {
-    paddingTop: theme.spacing(4),
-    paddingBottom: theme.spacing(4),
-  },
-  paper: {
-    padding: theme.spacing(2),
-    display: 'flex',
-    overflow: 'auto',
-    flexDirection: 'column',
-  },
-  fixedHeight: {
-    height: 240,
-  },
-}));
-
-export default function IndividualDashboard() {
+const IndividualDashboard = ({lastTransactions, lastUsage, aggregateData, tips}) => {
   const classes = UseStyles();
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
   return (
@@ -133,19 +55,25 @@ export default function IndividualDashboard() {
               {/* Chart */}
               <Grid item xs={12} md={8} lg={9}>
                 <Paper className={fixedHeightPaper}>
-                  <Chart />
+                  <Chart lastUsage = {lastUsage}/>
                 </Paper>
               </Grid>
-              {/* Recent Deposits */}
+              {/* Total saved energy */}
               <Grid item xs={12} md={4} lg={3}>
                 <Paper className={fixedHeightPaper}>
-                  <Deposits />
+                  <Summary data={aggregateData}/>
                 </Paper>
               </Grid>
-              {/* Recent Orders */}
-              <Grid item xs={12}>
+              {/* Recent transactions */}
+              <Grid item xs={12} md={8} lg={9}>
                 <Paper className={classes.paper}>
-                  <Orders />
+                  <TransactionList transactions={lastTransactions}/>
+                </Paper>
+              </Grid>
+              {/* Tips */}
+              <Grid item xs={12} md={4} lg={3}>
+                <Paper className={classes.paper}>
+                  <TipsList tips={tips}/>
                 </Paper>
               </Grid>
             </Grid>
@@ -158,4 +86,6 @@ export default function IndividualDashboard() {
          />
       </div>
   );
-}
+};
+
+export default IndividualDashboard;

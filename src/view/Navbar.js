@@ -2,7 +2,7 @@ import React from 'react'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
-import IconButton from "./Dashboard";
+import IconButton from "./RegionDashboard";
 import clsx from 'clsx';
 import MenuIcon from '@material-ui/icons/Menu';
 import Badge from '@material-ui/core/Badge';
