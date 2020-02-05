@@ -9,7 +9,7 @@ import Chart from './indiv_dash/Chart';
 
 import SmartNavbar from "../smart_view/SmartNavbar";
 import UseStyles from "./Styles";
-import Summary from "./indiv_dash/Summary";
+import RegionSummary from "./RegionSummary";
 
 function Copyright() {
     return (
@@ -42,7 +42,7 @@ const RegionDashboard = ({usage, aggregateData}) => {
                                          {/* Total saved energy */}
                                          <Grid item xs={12} md={4} lg={3}>
                                              <Paper className={fixedHeightPaper}>
-                                                 <Summary data={aggregateData}/>
+                                                 <RegionSummary data={aggregateData}/>
                                              </Paper>
                                          </Grid>
                                      </Grid>
